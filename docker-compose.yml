@@ -1,0 +1,15 @@
+version: '3'
+services:
+  deconz:
+    build: deconz
+    environment:
+      - SERVICE_NAME=deconz
+    ports:
+    - "7443:443"
+    - "8126:80"
+    volumes:
+    - /etc/localtime:/etc/localtime
+    - ${HOME}/.deconz/deCONZ_data:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+    - "/dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DO00K2RQ-if00-port0:/dev/ttyAMA0"
+    restart: always
